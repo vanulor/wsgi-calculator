@@ -59,7 +59,9 @@ def multiply(*args):
 
 
 def subtract(*args):
-    return "<html>subtract</html>"
+    nums=[int(x) for x in args]
+    total_nums=nums[0]-nums[1]
+    return f"<html>{total_nums}</html>"
 
 
 def divide(*args):
@@ -68,12 +70,8 @@ def divide(*args):
 
 def add(*args):
     """ Returns a STRING with the sum of the arguments """
-
-    # TODO: Fill sum with the correct value, based on the
-    # args provided.
-    sum = "0"
-
-    return "<html>add</html>"
+    add_num=sum(map(int,args))
+    return f"<html>{add_num}</html>"
 
 
 def resolve_path(path):
