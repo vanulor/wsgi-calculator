@@ -55,23 +55,39 @@ def help(*args):
 
 
 def multiply(*args):
-    return "<html>multiply</html>"
+    """ Returns a STRING with the product of the arguments """
+    nums = [int(x) for x in args]
+    multi_nums = nums.pop(0)
+    for num in nums:
+        multi_nums = multi_nums * num
+    return f"<html>{multi_nums}</html>"
 
 
 def subtract(*args):
-    nums=[int(x) for x in args]
-    total_nums=nums[0]-nums[1]
-    return f"<html>{total_nums}</html>"
+    """ Returns a STRING with the difference of the arguments """
+    nums = [int(x) for x in args]
+    sub_nums = nums.pop(0)
+    for num in nums:
+        sub_nums = sub_nums - num
+    return f"<html>{sub_nums}</html>"
 
 
 def divide(*args):
-    return "<html>divide</html>"
+    """ Returns a STRING with the quiotent of the arguments """
+    nums = [int(x) for x in args]
+    div_nums = nums.pop(0)
+    try:
+        for num in nums:
+            div_nums = div_nums / num
+        return f"<html>{div_nums}</html>"
+    except ZeroDivisionError:
+        raise ZeroDivisionError
+    return
 
 
 def add(*args):
     """ Returns a STRING with the sum of the arguments """
-    add_num=sum(map(int,args))
-    return f"<html>{add_num}</html>"
+    return f"<html>{sum(map(int, args))}</html>"
 
 
 def resolve_path(path):
@@ -99,6 +115,9 @@ def resolve_path(path):
 
 
 def application(environ, start_response):
+    """
+    WSGI application
+    """
     headers = [("Content-type", "text/html")]
     try:
         path = environ.get('PATH_INFO', None)
